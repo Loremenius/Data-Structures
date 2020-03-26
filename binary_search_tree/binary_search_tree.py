@@ -12,21 +12,56 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        node = self
+        inserted = False
+        while (inserted == False) : 
+            if value < node.value:
+                if node.left == None:
+                    node.left = BinarySearchTree(value)
+                    inserted = True
+                else:
+                    node = node.left
+            else:
+                if node.right == None:
+                    node.right = BinarySearchTree(value)
+                    inserted = True
+                else:
+                    node = node.right
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        node = self
+        while (target != node.value):
+            if target < node.value:
+                if node.left == None:
+                    return False
+                else:
+                     node = node.left
+            else:
+                if node.right == None:
+                    return False
+                else:
+                    node = node.right
+        
+        return True
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        node = self
+        while node.right != None:
+            node = node.right
+        
+        return node.value
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        if self.left != None:
+            self.left.for_each(cb)
+        if self.right != None:
+            self.right.for_each(cb)
+        cb(self.value)
 
     # DAY 2 Project -----------------------
 
